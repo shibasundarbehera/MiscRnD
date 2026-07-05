@@ -1,0 +1,29 @@
+@BulkApi_HostAddress = http://localhost:5000
+
+### Health check
+GET {{BulkApi_HostAddress}}/api/v1/ingest/health
+
+### Manually enqueue a file
+POST {{BulkApi_HostAddress}}/api/v1/ingest/file
+Content-Type: application/json
+
+{
+  "bucket": "bulk-ingest",
+  "objectKey": "batch/2026/07/05/data.parquet"
+}
+
+### S3 ObjectCreated webhook
+POST {{BulkApi_HostAddress}}/api/v1/ingest/s3-event
+Content-Type: application/json
+
+{
+  "Records": [
+    {
+      "eventName": "ObjectCreated:Put",
+      "s3": {
+        "bucket": { "name": "bulk-ingest" },
+        "object": { "key": "batch/2026/07/05/part-00001.parquet", "size": 45000000 }
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BulkApi.Api/BulkApi.Api.csproj" />
+    <Project Path="src/BulkApi.Core/BulkApi.Core.csproj" />
+    <Project Path="src/BulkApi.Worker/BulkApi.Worker.csproj" />
+  </Folder>
+</Solution>
